@@ -32,13 +32,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late AnimationController yAnimationController;
   late Animation<double> tweenAnimation;
   late Animation<double> sizeAnimation;
-  bool bookOpen = false;
+  bool bookOpen = true;
+  double dialogBoxHeight = 0.5;
   //Helper to set 45 and 90
   void isOpen() {
     setState(() {
-      bookOpen = !bookOpen;
+      bookOpen = false;
 
-      if (bookOpen) {
+      if (!bookOpen) {
         yAnimationController.forward();
       } else {
         yAnimationController.reverse();
@@ -52,10 +53,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     yAnimationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));
     tweenAnimation =
-        Tween<double>(begin: pi, end: pi / 5).animate(yAnimationController);
+        Tween<double>(begin: pi / 5, end: pi).animate(yAnimationController);
 
     // Size animation tween
-    sizeAnimation = Tween<double>(begin: 100, end: 50).animate(
+    sizeAnimation = Tween<double>(begin: 50, end: 100).animate(
         CurvedAnimation(parent: yAnimationController, curve: Curves.easeIn));
   }
 
@@ -74,6 +75,37 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         },
         child: Stack(
           children: [
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 300),
+              bottom: bookOpen ? -MediaQuery.of(context).size.height : 0,
+              child: GestureDetector(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * dialogBoxHeight,
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.grey,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        iconSize: 24,
+                        icon: const Icon(
+                          Icons.cancel,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            bookOpen = true;
+                            if (!bookOpen) {
+                              yAnimationController.forward();
+                            } else {
+                              yAnimationController.reverse();
+                            }
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             AnimatedPositioned(
               top: bookOpen ? 0 : MediaQuery.of(context).size.height / 2,
               left: bookOpen ? 0 : MediaQuery.of(context).size.width / 2,
