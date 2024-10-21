@@ -68,6 +68,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // Calculate the position based on dialogBoxHeight
+    double animatedElementPosition = bookOpen
+        ? 0
+        : dialogBoxHeight == 1
+            ? 0 // Position at top when dialog is full height
+            : MediaQuery.of(context).size.height / 2; // Center position
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -79,7 +85,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               duration: const Duration(milliseconds: 300),
               bottom: bookOpen ? -MediaQuery.of(context).size.height : 0,
               child: GestureDetector(
-                child: Container(
+                onTap: () {
+                  setState(() {
+                    dialogBoxHeight = 1;
+                  });
+                },
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
                   height: MediaQuery.of(context).size.height * dialogBoxHeight,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.grey,
@@ -93,6 +105,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         onPressed: () {
                           setState(() {
                             bookOpen = true;
+                            dialogBoxHeight = 0.5;
                             if (!bookOpen) {
                               yAnimationController.forward();
                             } else {
@@ -107,7 +120,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ),
             AnimatedPositioned(
-              top: bookOpen ? 0 : MediaQuery.of(context).size.height / 2,
+              top: animatedElementPosition,
               left: bookOpen ? 0 : MediaQuery.of(context).size.width / 2,
               duration: const Duration(milliseconds: 300),
               child: AnimatedBuilder(
