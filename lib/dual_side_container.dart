@@ -1,5 +1,6 @@
 // widgets/dual_sided_container.dart
 import 'package:flutter/material.dart';
+import 'package:host_view/constants.dart';
 
 class DualSidedContainer extends StatelessWidget {
   final double height;
@@ -23,7 +24,8 @@ class DualSidedContainer extends StatelessWidget {
       children: [
         Transform(
           alignment: Alignment.centerLeft,
-          transform: Matrix4.identity()..setEntry(3, 2, 0.001),
+          transform: Matrix4.identity()
+            ..setEntry(3, 2, AnimationConstants.perspective),
           child: SizedBox(
             height: height,
             width: width,
@@ -33,7 +35,7 @@ class DualSidedContainer extends StatelessWidget {
         Transform(
           alignment: Alignment.centerLeft,
           transform: Matrix4.identity()
-            ..setEntry(3, 2, 0.0015)
+            ..setEntry(3, 2, AnimationConstants.frontPerspective)
             ..rotateY(rotation),
           child: SizedBox(
             height: height,

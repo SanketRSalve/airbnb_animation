@@ -71,11 +71,11 @@ class AnimatedBookWithDialog extends StatelessWidget {
     } else {
       final reverseTweenAnimation = animation
           .drive(CurveTween(curve: Curves.linear))
-          .drive(Tween<double>(begin: initialRotation, end: 0));
+          .drive(
+              Tween<double>(begin: initialRotation, end: 3 * initialRotation));
       final reverseSizeTween = animation
           .drive(CurveTween(curve: Curves.linear))
           .drive(Tween<double>(begin: initialHeight * 2, end: initialHeight));
-
       return Material(
         color: Colors.transparent,
         child: AnimatedDualSidedContainer(

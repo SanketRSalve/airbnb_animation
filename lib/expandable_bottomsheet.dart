@@ -37,7 +37,7 @@ class _ExpandableBottomSheetState extends State<ExpandableBottomSheet>
     ).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Curves.easeInOut,
+        curve: Curves.linear,
       ),
     );
   }

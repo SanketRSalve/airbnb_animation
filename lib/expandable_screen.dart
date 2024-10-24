@@ -52,11 +52,4 @@ class ExpandableScreen extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildColoredContainer(Color color, String text) {
-    return Container(
-      decoration: BoxDecoration(color: color),
-      child: Text(text),
-    );
-  }
 }
