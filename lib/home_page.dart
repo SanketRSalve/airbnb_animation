@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:host_view/animated_book_with_dialog.dart';
 import 'package:host_view/property_listing_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,10 +15,7 @@ class HomePage extends StatelessWidget {
               borderRadius: BorderRadius.circular(50.0)),
           child: const Row(
             children: [
-              Icon(
-                Icons.search,
-                size: 20,
-              ),
+              ImageIcon(AssetImage("icons/magnifying-glass.png")),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -37,8 +33,16 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        actions: const [
-          Icon(Icons.tune),
+        actions: [
+          Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 1, color: const Color(0xFF767676))),
+              child: const ImageIcon(
+                AssetImage('icons/filter.png'),
+                size: 16,
+              )),
         ],
       ),
       body: PropertyListingCard(
@@ -54,11 +58,23 @@ class HomePage extends StatelessWidget {
           // Handle favorite button press
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Settings"),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('icons/loupe.png')), label: "Explore"),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('icons/love.png')),
+              label: "Wishlists"),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('icons/airbnb.png')), label: "Trips"),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('icons/chat.png')), label: "Messages"),
+          BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage('icons/user.png')), label: "Profile")
+        ],
+        unselectedItemColor: const Color(0xFF767676),
+        selectedItemColor: const Color(0xFFFF5A5F),
+      ),
     );
   }
 
@@ -68,7 +84,9 @@ class HomePage extends StatelessWidget {
       width: 50,
       color: color,
       child: Center(
-        child: Text(text),
+        child: Text(
+          text,
+        ),
       ),
     );
   }

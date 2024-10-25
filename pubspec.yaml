@@ -62,6 +62,7 @@ flutter:
   assets:
     - assets/images/1.jpg
     - assets/images/2.jpg
+    - assets/images/profile_1.jpg
     - assets/icons/airbnb.png
     - assets/icons/chat.png
     - assets/icons/filter.png
@@ -70,6 +71,7 @@ flutter:
     - assets/icons/magnifying-glass.png
     - assets/icons/star.png
     - assets/icons/user.png
+    - assets/icons/wish.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

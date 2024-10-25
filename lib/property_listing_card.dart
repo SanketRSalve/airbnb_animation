@@ -34,10 +34,9 @@ class PropertyListingCard extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.all(12.0),
-          height: MediaQuery.sizeOf(context).height * 0.3,
+          height: MediaQuery.sizeOf(context).height * 0.4,
           width: MediaQuery.sizeOf(context).width,
           decoration: BoxDecoration(
-              color: Colors.red,
               borderRadius: BorderRadius.circular(12.0),
               image: DecorationImage(
                   image: AssetImage(propertyImage), fit: BoxFit.cover)),
@@ -51,23 +50,23 @@ class PropertyListingCard extends StatelessWidget {
                 children: [
                   if (isSuperhost)
                     Container(
-                      padding: const EdgeInsets.all(4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                         color: Colors.black.withOpacity(0.4),
                       ),
                       child: const Text(
                         "Superhost",
-                        style: TextStyle(fontSize: 8),
+                        style: TextStyle(fontSize: 10),
                       ),
                     ),
                   GestureDetector(
                     onTap: onFavoritePressed,
-                    child: const Icon(
-                      Icons.favorite_outline,
+                    child: const ImageIcon(
+                      AssetImage("icons/wish.png"),
                       color: Colors.white,
-                      fill: 1.0,
-                      size: 20,
+                      size: 16,
                     ),
                   ),
                 ],
@@ -82,24 +81,53 @@ class PropertyListingCard extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               "Room in $location",
-              style: const TextStyle(fontSize: 8),
+              style: const TextStyle(
+                color: Color(0xFF222222),
+                fontSize: 14,
+                fontWeight: FontWeight.w300,
+              ),
             ),
-            Text(
-              rating,
-              style: const TextStyle(fontSize: 8),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ImageIcon(
+                  AssetImage('icons/star.png'),
+                  size: 16,
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  rating,
+                  style: const TextStyle(
+                    color: Color(0xFF222222),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
         Text(
           "Stay with $hostName-Creating memories!",
-          style: const TextStyle(fontSize: 6),
+          style: const TextStyle(
+            color: Color(0xFF5E5E5E),
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+          ),
         ),
         Text(
           description,
-          style: const TextStyle(fontSize: 6),
+          style: const TextStyle(
+            color: Color(0xFF5E5E5E),
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+          ),
         ),
       ],
     );
