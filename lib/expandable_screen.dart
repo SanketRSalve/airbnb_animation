@@ -25,13 +25,14 @@ class ExpandableScreen extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 100.0),
+              padding: const EdgeInsets.only(right: 100.0),
               child: Hero(
                 tag: heroTag,
-                child: DualSidedContainer(
+                child: FlipBookContainer(
                   height: 100,
                   width: 100,
-                  rotation: pi,
+                  rotation: 0,
+                  xTranslation: 100,
                   frontWidget: frontWidget,
                   backWidget: backWidget,
                 ),

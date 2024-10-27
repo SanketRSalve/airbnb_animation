@@ -32,3 +32,35 @@ class AnimatedDualSidedContainer extends StatelessWidget {
     );
   }
 }
+
+class AnimatedFlipBook extends StatelessWidget {
+  final Animation<double> animation;
+  final Animation<double> sizeAnimation;
+  final Widget frontWidget;
+  final Widget backWidget;
+
+  const AnimatedFlipBook({
+    super.key,
+    required this.animation,
+    required this.sizeAnimation,
+    required this.frontWidget,
+    required this.backWidget,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return FlipBookContainer(
+          height: sizeAnimation.value,
+          width: sizeAnimation.value,
+          rotation: animation.value,
+          xTranslation: sizeAnimation.value,
+          frontWidget: frontWidget,
+          backWidget: backWidget,
+        );
+      },
+    );
+  }
+}

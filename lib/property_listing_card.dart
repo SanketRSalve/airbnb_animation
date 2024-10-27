@@ -74,7 +74,7 @@ class PropertyListingCard extends StatelessWidget {
               AnimatedBookWithDialog(
                 frontWidget: frontWidget,
                 backWidget: backWidget,
-                initialRotation: pi / 4.5,
+                initialRotation: 2 / pi,
               ),
             ],
           ),

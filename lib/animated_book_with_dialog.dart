@@ -54,14 +54,14 @@ class AnimatedBookWithDialog extends StatelessWidget {
     if (isPush) {
       final tweenAnimation = animation
           .drive(CurveTween(curve: Curves.linear))
-          .drive(Tween<double>(begin: initialRotation, end: pi));
+          .drive(Tween<double>(begin: -(3 * pi / 4), end: 0));
       final sizeTween = animation
           .drive(CurveTween(curve: Curves.linear))
           .drive(Tween<double>(begin: initialHeight, end: initialHeight * 2));
 
       return Material(
         color: Colors.transparent,
-        child: AnimatedDualSidedContainer(
+        child: AnimatedFlipBook(
           animation: tweenAnimation,
           sizeAnimation: sizeTween,
           frontWidget: frontWidget,
