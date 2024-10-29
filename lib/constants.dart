@@ -1,4 +1,3 @@
-
 class AnimationConstants {
   static const Duration heroTransitionDuration = Duration(milliseconds: 600);
   static const Duration expandTransitionDuration = Duration(milliseconds: 600);

@@ -28,7 +28,7 @@ class _ExpandableBottomSheetState extends State<ExpandableBottomSheet>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 0),
     );
 
     _heightAnimation = Tween<double>(
@@ -66,19 +66,17 @@ class _ExpandableBottomSheetState extends State<ExpandableBottomSheet>
           alignment: Alignment.bottomCenter,
           child: AnimatedBuilder(
             animation: _heightAnimation,
-            builder: (context, child) => FractionallySizedBox(
-              heightFactor: _heightAnimation.value,
-              child: GestureDetector(
-                onTap: _toggleExpand,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(20)),
-                  ),
-                  child: widget.child,
+            builder: (context, child) => GestureDetector(
+              onTap: _toggleExpand,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height:
+                    MediaQuery.of(context).size.height * _heightAnimation.value,
+                decoration: const BoxDecoration(
+                  color: Color(0xFFecebe6),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 ),
+                child: widget.child,
               ),
             ),
           ),

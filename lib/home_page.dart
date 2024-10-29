@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:host_view/book_cover_widget.dart';
+import 'package:host_view/front_page.dart';
+import 'package:host_view/profile_image.dart';
 import 'package:host_view/property_listing_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -52,8 +55,8 @@ class HomePage extends StatelessWidget {
         hostName: "Nikki",
         description: "New! Quiet, private studio. Private bath + Garden",
         isSuperhost: true,
-        frontWidget: _buildContainer(text: "Front", color: Colors.purple),
-        backWidget: _buildContainer(text: "Back", color: Colors.grey),
+        frontWidget: const FrontPage(width: 50, height: 50),
+        backWidget: const SimpleBookCover(width: 50, height: 50),
         onFavoritePressed: () {
           // Handle favorite button press
         },
@@ -78,16 +81,12 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildContainer({required String text, required Color color}) {
+  Widget _buildContainer({required Widget child, required Color color}) {
     return Container(
       height: 50,
       width: 50,
       color: color,
-      child: Center(
-        child: Text(
-          text,
-        ),
-      ),
+      child: child,
     );
   }
 }

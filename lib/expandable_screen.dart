@@ -25,7 +25,7 @@ class ExpandableScreen extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 100.0),
+              padding: const EdgeInsets.only(right: 100.0, top: 20),
               child: Hero(
                 tag: heroTag,
                 child: FlipBookContainer(
@@ -36,16 +36,6 @@ class ExpandableScreen extends StatelessWidget {
                   frontWidget: frontWidget,
                   backWidget: backWidget,
                 ),
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 30,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text('Item $index'),
-                  );
-                },
               ),
             ),
           ],
